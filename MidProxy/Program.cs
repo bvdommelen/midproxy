@@ -19,11 +19,6 @@ namespace MidProxy
     public static class Program
     {
         /// <summary>
-        /// The resource manager to retrieve console messages from.
-        /// </summary>
-        private static ResourceManager messages = new ResourceManager("Messages", typeof(Program).Assembly);
-
-        /// <summary>
         /// The main entry point for the application.
         /// </summary>
         /// <param name="args">Command line or service arguments</param>
@@ -31,12 +26,7 @@ namespace MidProxy
         {
             if (args.Contains("-debug"))
             {
-                using (MidProxyService midProxy = new MidProxyService())
-                {
-                    midProxy.StartDebugging(args);
-                    Console.Read();
-                    midProxy.StopDebugging();
-                }
+                Debug(args);
             }
             else if (args.Contains("-install"))
             {
@@ -48,12 +38,34 @@ namespace MidProxy
             }
             else
             {
-                ServiceBase[] servicesToRun = new ServiceBase[]
-                {
-                    new MidProxyService()
-                };
-                ServiceBase.Run(servicesToRun);
+                RunAsService();
             }
+        }
+
+        /// <summary>
+        /// Debug the program as a command line application.
+        /// </summary>
+        /// <param name="args">Command line arguments</param>
+        private static void Debug(string[] args)
+        {
+            using (MidProxyService midProxy = new MidProxyService())
+            {
+                midProxy.StartDebugging(args);
+                Console.Read();
+                midProxy.StopDebugging();
+            }
+        }
+
+        /// <summary>
+        /// Runs the program as a service.
+        /// </summary>
+        private static void RunAsService()
+        {
+            ServiceBase[] servicesToRun = new ServiceBase[]
+            {
+                    new MidProxyService()
+            };
+            ServiceBase.Run(servicesToRun);
         }
 
         /// <summary>
@@ -61,11 +73,11 @@ namespace MidProxy
         /// </summary>
         /// <param name="args">Installation command line arguments</param>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Swallow the rollback exception and let the real cause bubble up.")]
-        internal static void Install(string[] args)
+        private static void Install(string[] args)
         {
             try
             {
-                Console.WriteLine(messages.GetString("SVC_INSTALL"));
+                Console.WriteLine(MidProxy.Messages.SVC_INSTALL);
                 using (AssemblyInstaller inst =
                     new AssemblyInstaller(typeof(Program).Assembly, args))
                 {
@@ -75,13 +87,13 @@ namespace MidProxy
                     {
                         inst.Install(state);
                         inst.Commit(state);
-                        Console.WriteLine(messages.GetString("SVC_INSTALL_OK"));
+                        Console.WriteLine(MidProxy.Messages.SVC_INSTALL_OK);
                     }
                     catch
                     {
                         try
                         {
-                            Console.WriteLine(messages.GetString("SVC_INSTALL_NOK"));
+                            Console.WriteLine(MidProxy.Messages.SVC_INSTALL_NOK);
                             inst.Rollback(state);
                         }
                         catch
@@ -105,11 +117,11 @@ namespace MidProxy
         /// </summary>
         /// <param name="args">Uninstall command line arguments</param>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Swallow the rollback exception and let the real cause bubble up.")]
-        internal static void Uninstall(string[] args)
+        private static void Uninstall(string[] args)
         {
             try
             {
-                Console.WriteLine(messages.GetString("SVC_UNINSTALL"));
+                Console.WriteLine(MidProxy.Messages.SVC_UNINSTALL);
                 using (AssemblyInstaller inst =
                     new AssemblyInstaller(typeof(Program).Assembly, args))
                 {
@@ -118,13 +130,13 @@ namespace MidProxy
                     try
                     {
                         inst.Uninstall(state);
-                        Console.WriteLine(messages.GetString("SVC_UNINSTALL_OK"));
+                        Console.WriteLine(MidProxy.Messages.SVC_UNINSTALL_OK);
                     }
                     catch
                     {
                         try
                         {
-                            Console.WriteLine(messages.GetString("SVC_UNINSTALL_NOK"));
+                            Console.WriteLine(MidProxy.Messages.SVC_UNINSTALL_NOK);
                             inst.Rollback(state);
                         }
                         catch
