@@ -117,13 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="serviceProcessInstaller1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 56</value>
-  </metadata>
-  <metadata name="serviceInstaller1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>196, 17</value>
-  </metadata>
-  <metadata name="$this.TrayLargeIcon" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
+  <data name="SVC_INSTALL" xml:space="preserve">
+    <value>Installing service...</value>
+  </data>
+  <data name="SVC_INSTALL_NOK" xml:space="preserve">
+    <value>Failed to install service</value>
+  </data>
+  <data name="SVC_INSTALL_OK" xml:space="preserve">
+    <value>Service successfully installed</value>
+  </data>
+  <data name="SVC_UNINSTALL" xml:space="preserve">
+    <value>Uninstalling service...</value>
+  </data>
+  <data name="SVC_UNINSTALL_NOK" xml:space="preserve">
+    <value>Failed to uninstall service</value>
+  </data>
+  <data name="SVC_UNINSTALL_OK" xml:space="preserve">
+    <value>Service successfully uninstalled</value>
+  </data>
 </root>

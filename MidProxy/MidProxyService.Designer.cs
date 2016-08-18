@@ -1,6 +1,6 @@
 ﻿namespace MidProxy
 {
-    partial class MidProxy
+    partial class MidProxyService
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             // 
-            // MidProxy
+            // MidProxyService
             // 
-            this.ServiceName = "MidProxy";
+            this.ServiceName = "MidProxyService";
 
         }
 

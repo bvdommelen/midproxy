@@ -33,14 +33,15 @@
             // 
             // serviceProcessInstaller1
             // 
+            this.serviceProcessInstaller1.Account = System.ServiceProcess.ServiceAccount.LocalSystem;
             this.serviceProcessInstaller1.Password = null;
             this.serviceProcessInstaller1.Username = null;
             // 
             // serviceInstaller1
             // 
             this.serviceInstaller1.Description = "Proxies inbound webservice calls to ServiceNow via the MIDServer";
-            this.serviceInstaller1.DisplayName = "MidProxy";
-            this.serviceInstaller1.ServiceName = "MidProxy";
+            this.serviceInstaller1.DisplayName = "MidProxyService";
+            this.serviceInstaller1.ServiceName = "MidProxyService";
             this.serviceInstaller1.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
             // 
             // ProjectInstaller
